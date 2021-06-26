@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.16;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -20,7 +20,7 @@ contract DistributorRole {
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyDistributor() {
-     require(isDistributor(msg.sender));
+    require(isDistributor(msg.sender));
     _;
   }
 
@@ -36,7 +36,7 @@ contract DistributorRole {
 
   // Define a function 'renounceDistributor' to renounce this role
   function renounceDistributor() public {
-    _removeDistributor(msg.sender))
+    _removeDistributor(msg.sender);
   }
 
   // Define an internal function '_addDistributor' to add this role, called by 'addDistributor'
