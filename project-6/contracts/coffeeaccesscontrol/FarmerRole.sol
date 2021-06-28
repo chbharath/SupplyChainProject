@@ -4,7 +4,7 @@ pragma solidity ^0.5.16;
 import "./Roles.sol";
 
 // Define a contract 'FarmerRole' to manage this role - add, remove, check
-contract FarmerRole {
+contract FarmerRole is Roles {
   using Roles for Roles.Role;
 
   // Define 2 events, one for Adding, and other for Removing

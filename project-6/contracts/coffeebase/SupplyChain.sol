@@ -8,7 +8,7 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 
 
 // Define a contract 'Supplychain'
-contract SupplyChain {
+contract SupplyChain is RetailerRole, ConsumerRole{
 
   // Define 'owner'
   address owner;
@@ -161,7 +161,7 @@ contract SupplyChain {
   }
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-  function harvestItem(uint _upc, address _originFarmerID, string memory _originFarmName, string memory _originFarmInformation, string  memory _originFarmLatitude, string  memory _originFarmLongitude, string  memory _productNotes) public 
+  function harvestItem(uint _upc, address _originFarmerID, string memory _originFarmName, string memory _originFarmInformation, string  memory _originFarmLatitude, string  memory _originFarmLongitude, uint _productID, string  memory _productNotes) public 
   {
     // Add the new item as part of Harvest
     items[_upc].sku = sku;
@@ -261,7 +261,7 @@ contract SupplyChain {
     // Call modifier to check if upc has passed previous supply chain stage
     shipped(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    onlyRetailer()
+    onlyRetailer
     {
     // Update the appropriate fields - ownerID, retailerID, itemState
     items[_upc].ownerID = msg.sender;
@@ -277,7 +277,7 @@ contract SupplyChain {
     // Call modifier to check if upc has passed previous supply chain stage
     received(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    onlyConsumer()
+    onlyConsumer
     {
     // Update the appropriate fields - ownerID, consumerID, itemState
     items[_upc].ownerID = msg.sender;
