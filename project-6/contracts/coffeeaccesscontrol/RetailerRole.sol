@@ -4,7 +4,8 @@ pragma solidity ^0.5.16;
 import "./Roles.sol";
 
 // Define a contract 'RetailerRole' to manage this role - add, remove, check
-contract RetailerRole is Roles {
+contract RetailerRole {
+  using Roles for Roles.Role;
 
   // Define 2 events, one for Adding, and other for Removing
   event RetailerAdded(address indexed account);

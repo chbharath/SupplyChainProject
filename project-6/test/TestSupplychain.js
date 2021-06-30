@@ -14,7 +14,7 @@ contract('SupplyChain', function(accounts) {
     const originFarmLongitude = "144.341490"
     var productID = sku + upc
     const productNotes = "Best beans for Espresso"
-    const productPrice = web3.toWei(1, "ether")
+    const productPrice = web3.utils.toWei(web3.utils.toBN(1), "ether")
     var itemState = 0
     const distributorID = accounts[2]
     const retailerID = accounts[3]
@@ -50,12 +50,15 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Harvested()
         var event = supplyChain.Harvested()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
         // Mark an item as Harvested by calling function harvestItem()
-        await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productNotes)
+        await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productID, productNotes)
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
@@ -83,7 +86,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Processed()
         var event = supplyChain.Processed()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
@@ -106,7 +112,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Packed()
         var event = supplyChain.Packed()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //   eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
@@ -129,12 +138,15 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event ForSale()
         var event = supplyChain.ForSale()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
         // Mark an item as ForSale by calling function sellItem()
-        await supplyChain.sellItem(upc)
+        await supplyChain.sellItem(upc, productPrice)
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
@@ -152,7 +164,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Sold()
         var event = supplyChain.Sold()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
@@ -175,7 +190,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Shipped()
         var event = supplyChain.Shipped()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
@@ -198,7 +216,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Received()
         var event = supplyChain.Received()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 
@@ -221,7 +242,10 @@ contract('SupplyChain', function(accounts) {
         
         // Watch the emitted event Purchased()
         var event = supplyChain.Purchased()
-        await event.watch((err, res) => {
+        //await event.watch((err, res) => {
+        //    eventEmitted = true
+        //})
+        event.on('data', event => {
             eventEmitted = true
         })
 

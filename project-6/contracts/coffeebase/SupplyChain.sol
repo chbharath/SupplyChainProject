@@ -8,10 +8,10 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 
 
 // Define a contract 'Supplychain'
-contract SupplyChain is RetailerRole, ConsumerRole{
-
+contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, FarmerRole {
+  //Not required as we are inherting from Ownable
   // Define 'owner'
-  address owner;
+  // address owner;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -70,11 +70,12 @@ contract SupplyChain is RetailerRole, ConsumerRole{
   event Received(uint upc);
   event Purchased(uint upc);
 
+  //Not required as we are inherting from Ownable
   // Define a modifer that checks to see if msg.sender == owner of the contract
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
+  //modifier onlyOwner() {
+  //  require(msg.sender == owner);
+  //  _;
+  //}
 
   // Define a modifer that verifies the Caller
   modifier verifyCaller (address _address) {
@@ -89,11 +90,18 @@ contract SupplyChain is RetailerRole, ConsumerRole{
   }
   
   // Define a modifier that checks the price and refunds the remaining balance
-  modifier checkValue(uint _upc) {
+  //modifier checkValue(uint _upc) {
+  //  _;
+  //  uint _price = items[_upc].productPrice;
+  //  uint amountToReturn = msg.value - _price;
+  //  items[_upc].consumerID.transfer(amountToReturn);
+  // }
+  modifier checkValue(uint _upc, address _address) {
     _;
     uint _price = items[_upc].productPrice;
     uint amountToReturn = msg.value - _price;
-    items[_upc].consumerID.transfer(amountToReturn);
+    address payable wallet = address(uint160(_address));
+    wallet.transfer(amountToReturn);
   }
 
   // Define a modifier that checks if an item.state of a upc is Harvested
@@ -148,17 +156,17 @@ contract SupplyChain is RetailerRole, ConsumerRole{
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-    owner = msg.sender;
+    //owner = msg.sender;
     sku = 1;
     upc = 1;
   }
 
   // Define a function 'kill' if required
-  function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
-    }
-  }
+  //function kill() public {
+  //  if (msg.sender == owner) {
+  //    selfdestruct(owner);
+  //  }
+  //}
 
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
   function harvestItem(uint _upc, address _originFarmerID, string memory _originFarmName, string memory _originFarmInformation, string  memory _originFarmLatitude, string  memory _originFarmLongitude, uint _productID, string  memory _productNotes) public 
@@ -215,6 +223,7 @@ contract SupplyChain is RetailerRole, ConsumerRole{
   {
     // Update the appropriate fields
     items[_upc].itemState = State.ForSale;
+    items[_upc].productPrice = _price;
     // Emit the appropriate event
     emit ForSale(_upc);
   }
@@ -228,7 +237,7 @@ contract SupplyChain is RetailerRole, ConsumerRole{
     // Call modifer to check if buyer has paid enough
     paidEnough(msg.value)
     // Call modifer to send any excess ether back to buyer
-    checkValue(_upc)
+    checkValue(_upc, msg.sender)
     {
 
     // Update the appropriate fields - ownerID, distributorID, itemState
@@ -236,7 +245,8 @@ contract SupplyChain is RetailerRole, ConsumerRole{
     items[_upc].distributorID = msg.sender;
     items[_upc].itemState = State.Sold;
     // Transfer money to farmer
-    items[_upc].originFarmerID.transfer(items[_upc].productPrice);
+    address payable wallet = address(uint160(items[_upc].originFarmerID));
+    wallet.transfer(items[_upc].productPrice);
     // emit the appropriate event
     emit Sold(_upc);
   }
