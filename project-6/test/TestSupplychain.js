@@ -64,10 +64,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Harvested by calling function harvestItem()
         await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productID, productNotes)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -110,10 +112,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Processed by calling function processtItem()
         await supplyChain.processItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -146,10 +150,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Packed by calling function packItem()
         await supplyChain.packItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -182,10 +188,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as ForSale by calling function sellItem()
         await supplyChain.sellItem(upc, productPrice)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -220,9 +228,11 @@ contract('SupplyChain', function(accounts) {
         })
 
         // Mark an item as Sold by calling function buyItem()
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before' ,resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before' ,resultBufferTwo1[5])
         await supplyChain.buyItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         //const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State after' ,resultBufferTwo[5])
@@ -254,10 +264,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
         await supplyChain.shipItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -290,10 +302,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
         await supplyChain.receiveItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -326,10 +340,12 @@ contract('SupplyChain', function(accounts) {
                 eventEmitted = true;
             }
         })
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        console.log('State before',resultBufferTwo[5])
+        const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
+        console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
         await supplyChain.purchaseItem(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+
         console.log('State after',resultBufferTwo[5])
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -364,7 +380,7 @@ contract('SupplyChain', function(accounts) {
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-        
+        console.log('resultBufferTwo', resultBufferTwo)
         // Verify the result set:
         assert.equal(resultBufferTwo[0], sku, 'Error: Invalid item SKU')
         assert.equal(resultBufferTwo[1], upc, 'Error: Invalid item UPC')

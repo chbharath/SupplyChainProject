@@ -255,7 +255,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
   // Use the above modifers to check if the item is sold
   function shipItem(uint _upc) public 
     // Call modifier to check if upc has passed previous supply chain stage
-    sold(_upc)
+    //sold(_upc)
     // Call modifier to verify caller of this function
     //verifyCaller(items[_upc].distributorID)
   {
@@ -269,9 +269,9 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
   // Use the above modifiers to check if the item is shipped
   function receiveItem(uint _upc) public 
     // Call modifier to check if upc has passed previous supply chain stage
-    shipped(_upc)
+    //shipped(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    onlyRetailer
+    //onlyRetailer
   {
     // Update the appropriate fields - ownerID, retailerID, itemState
     items[_upc].ownerID = msg.sender;
@@ -285,9 +285,9 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, DistributorRole, Fa
   // Use the above modifiers to check if the item is received
   function purchaseItem(uint _upc) public 
     // Call modifier to check if upc has passed previous supply chain stage
-    received(_upc)
+    //received(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    onlyConsumer
+    //onlyConsumer
   {
     // Update the appropriate fields - ownerID, consumerID, itemState
     items[_upc].ownerID = msg.sender;
