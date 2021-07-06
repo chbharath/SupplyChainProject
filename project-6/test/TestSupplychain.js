@@ -115,7 +115,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as Processed by calling function processtItem()
-        await supplyChain.processItem(upc)
+        await supplyChain.processItem(upc, {from: originFarmerID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -153,7 +153,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as Packed by calling function packItem()
-        await supplyChain.packItem(upc)
+        await supplyChain.packItem(upc, {from: originFarmerID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -191,7 +191,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as ForSale by calling function sellItem()
-        await supplyChain.sellItem(upc, productPrice)
+        await supplyChain.sellItem(upc, productPrice, {from: originFarmerID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -230,7 +230,7 @@ contract('SupplyChain', function(accounts) {
         // Mark an item as Sold by calling function buyItem()
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before' ,resultBufferTwo1[5])
-        await supplyChain.buyItem(upc)
+        await supplyChain.buyItem(upc, {from: distributorID, value: productPrice})
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -267,7 +267,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
-        await supplyChain.shipItem(upc)
+        await supplyChain.shipItem(upc, {from: distributorID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -305,7 +305,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
-        await supplyChain.receiveItem(upc)
+        await supplyChain.receiveItem(upc, {from: retailerID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -343,7 +343,7 @@ contract('SupplyChain', function(accounts) {
         const resultBufferTwo1 = await supplyChain.fetchItemBufferTwo.call(upc)
         console.log('State before',resultBufferTwo1[5])
         // Mark an item as Sold by calling function buyItem()
-        await supplyChain.purchaseItem(upc)
+        await supplyChain.purchaseItem(upc, {from: consumerID});
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
 
         console.log('State after',resultBufferTwo[5])
@@ -361,7 +361,7 @@ contract('SupplyChain', function(accounts) {
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         //await supplyChain.fetchItem(upc)
-        const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
+        const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc, {from: accounts[8]})
 
         // Verify the result set:
         assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU')
@@ -379,7 +379,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
-        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
+        const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc, {from: accounts[7]})
         console.log('resultBufferTwo', resultBufferTwo)
         // Verify the result set:
         assert.equal(resultBufferTwo[0], sku, 'Error: Invalid item SKU')
