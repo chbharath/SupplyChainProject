@@ -2663,6 +2663,12 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x6eF348f242e22CA357372c851e3e802975FA5741",
+      "transactionHash": "0x7c4faddd21b46a9889aab423f89b8faf0c217a8d65233981860c5b4d5bf33a33"
+    },
     "1624901429453": {
       "events": {},
       "links": {},
@@ -2703,14 +2709,41 @@
       "transactionHash": "0xe43786003d1ebf2a9c35d6b83c37b45fb9210f0cd26347622f3ca8cb0f954f53"
     },
     "1625568124848": {
-      "events": {},
+      "events": {
+        "0x71ae26cad02663e3d92efd6ec56031a80d74a20c0ab4183faa8bf262261c9baa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "RetailerAdded",
+          "type": "event"
+        },
+        "0xdb7176e79cffef81cb01767dd0447a0b24bb72ca9778d4b245581086b2a7e6db": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "RetailerRemoved",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xAA3345aE232a064dA397f42F91AD89d7104D07Fc",
-      "transactionHash": "0x2f3172e215a6027257710a81068a728a80237c50ff7ee17860d1b87c80b3b0b7"
+      "address": "0x3DE2F38656C015AacAd21E13544A0C56e2Bf24d2",
+      "transactionHash": "0xace6a5027aec42ba2efe2c0f44501f63cf5bde1c774edf76f5fae4ca1ad9d7dd"
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-07-06T10:43:28.283Z",
+  "updatedAt": "2021-07-07T09:38:31.417Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
