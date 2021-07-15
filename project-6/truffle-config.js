@@ -21,7 +21,8 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const infuraKey = "b7c3bff7a19a482fb29b8661381615b4";
 //const mnemonic = "sadness cross wheat coach cannon tourist degree offer top desert impact predict";
-const mnemonic ="improve inch police material tissue exhaust degree action rail angry napkin toy";
+//const mnemonic ="improve inch police material tissue exhaust degree action rail angry napkin toy";
+const mnemonic = "erase giggle race doctor finger retreat settle guilt course visa exit dice"
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -46,13 +47,13 @@ module.exports = {
     //
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
+      port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
       websockets: true        // Enable EventEmitter interface for web3 (default: false)
     },
 
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`, 0, 5),
         network_id: 4,       // rinkeby's id
         gas: 4500000,        // rinkeby has a lower block limit than mainnet
         gasPrice: 21000000000
