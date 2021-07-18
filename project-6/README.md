@@ -75,6 +75,13 @@ Migrate smart contracts to the locally running blockchain, ganache-cli:
 ```
 truffle migrate
 ```
+Migrate to Rinkeby test network
+
+```
+truffle migrate --network rinkeby
+```
+
+** Get some test ether from https://faucet.rinkeby.io/ into your main address as deployment needs gas. Instructions on how to get test ether from the faucet are available in the site above.
 
 Your terminal should look something like this:
 
@@ -114,3 +121,39 @@ See also the list of [contributors](https://github.com/your/project/contributors
 * Ganache-cli
 * Truffle
 * IPFS
+
+## IPFS is not used in the project
+
+## Below UML diagrams are included in the project
+
+* Activity Diagram - Activity Diagram.drawio
+
+```
+Activity diagram shows the actors in the whole process and the activities that each of the actor is associated with. It also shows the interaction between the actors
+```
+
+* Sequence Diagram - Sequence Diagram.drawio
+
+```
+Sequence diagram shows the actors and the sequence in which the activities can be perform by the respective actors
+```
+
+* State Diagram - State Diagram.drawio
+
+```
+State diagram shows the various states of the object in the whole process and which actor is responsible/associated with that particular state
+```
+
+* Class Diagram - Data Model Diagram - Class Diagram.drawio
+
+```
+Class diagram shows the data structure in the process
+```
+
+## Transaction hash
+0x93648a31f396d95ef3f017a3100ee032178bd5279423e612f25d54c70636beb4
+
+## Contract Address
+0x16E104f9459C4A82a3feC54728b3d73086e36c8D
+
+
